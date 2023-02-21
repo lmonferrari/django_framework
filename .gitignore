@@ -1,0 +1,7 @@
+*.idea
+*.sqlite3
+.DS_store
+media
+.env
+cliente1
+cliente2
