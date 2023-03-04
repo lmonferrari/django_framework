@@ -35,5 +35,12 @@ def person_edit(request, id):
 
 def person_delete(request, id):
     person = get_object_or_404(Person, pk=id)
-    person.delete()
-    return redirect('list')
+    form = PersonForm(request.POST or None,
+                      request.FILES or None, instance=person)
+
+    if request.method == 'POST':
+        person.delete()
+        return redirect('list')
+
+    return render(request, 'delete_confirm.html', {'form': form})
+    
