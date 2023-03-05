@@ -1,14 +1,17 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import PersonForm
 from .models import Person
 
 
+@login_required
 def person_list(request):
     persons = Person.objects.all()
     return render(request, 'lista.html', {'persons': persons})
 
 
+@login_required
 def person_create(request):
     # tenta preencher com algo, caso seja um form novo
     # envia em branco
@@ -21,6 +24,7 @@ def person_create(request):
     return render(request, 'pessoa.html', {'form': form})
 
 
+@login_required
 def person_edit(request, id):
     person = get_object_or_404(Person, pk=id)
     form = PersonForm(request.POST or None,
@@ -33,6 +37,7 @@ def person_edit(request, id):
     return render(request, 'pessoa.html', {'form': form})
 
 
+@login_required
 def person_delete(request, id):
     person = get_object_or_404(Person, pk=id)
     form = PersonForm(request.POST or None,
@@ -43,4 +48,3 @@ def person_delete(request, id):
         return redirect('list')
 
     return render(request, 'delete_confirm.html', {'form': form})
-    
