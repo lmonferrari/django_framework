@@ -3,11 +3,21 @@
 {% block title%} Seja bem-vindo {% endblock%}
 
 {% block main %}
-    <h3>Seja bem vindo</h3>
-    {% if user.is_authenticated %}
-        <p>Olá, {{user.username}}</p>
-        <a href="{% url 'logout'%}">Sair</a>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a>
-    {% endif %}
+<div class="row">
+    <div class="col-sm">
+
+    </div>
+    <div class="col-sm">
+        <h1>Seja bem vindo</h1>
+    </div>
+    <div class="col-sm">
+        {% if user.is_authenticated %}
+            <p>Olá, {{user.username}}</p>
+            <a href="{% url 'logout'%}">Sair</a>
+            <a href="{% url 'list'%}">Clientes</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

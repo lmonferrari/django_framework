@@ -2,16 +2,22 @@
 {% block title%}Lista de pessoas{% endblock %}
 
 {% block main %}
-<a href="{% url 'logout' %}">Sair</a>
-    <ul>
-        {% for person in persons %}
-        <li>
-            {{person.first_name}} {{person.last_name}}
-            <a href="{% url 'edit' person.id %}">editar</a> -
-            <a href="{% url 'delete' person.id%}">deletar</a>
-        </li>
-        {% endfor %}
-    </ul>
+<div class="row">
+    <div class="col">
+        <a href="{% url 'logout' %}" class="btn btn-link">Sair</a>
+    </div>
+    <div class="col-6">
+        <ul class="list-group">
+            {% for person in persons %}
+            <li class="list-group-item">
+                <a href="{% url 'edit' person.id %}" class="btn btn-link">{{person.first_name}} {{person.last_name}}</a>
+                <a href="{% url 'delete' person.id%}" class="btn btn-danger">deletar</a>
+            </li>
+            {% endfor %}
+        </ul>
 
-    <a href="{% url 'create' %}">Novo Cliente</a>
+    </div>
+    <div class="col-sm">
+        <a href="{% url 'create' %}" class="btn btn-primary">Novo Cliente</a>
+    </div>
 {% endblock %}
